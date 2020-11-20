@@ -1,4 +1,4 @@
-import 'package:e_report/bloc/math_bloc.dart';
+import 'package:e_report/bloc/simplecalculator_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MathBloc(),
+      create: (context) => SimplecalculatorBloc(),
       child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  MathBloc bloc;
+  SimplecalculatorBloc bloc;
   @override
   void dispose() {
     super.dispose();
@@ -42,13 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bloc = BlocProvider.of<MathBloc>(context);
+    bloc = BlocProvider.of<SimplecalculatorBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: BlocBuilder<MathBloc, double>(
-        builder: (context, double state) {
+      body: BlocBuilder<SimplecalculatorBloc, SimplecalculatorState>(
+        builder: (context, SimplecalculatorState state) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.blue,
                   child: Text("Increment counter"),
                   onPressed: () {
-                    bloc.add(MathEvent.add);
+                    // bloc.add(MathEvent.add);
                     // _counterBlocSink.add(IncreaseCounterEvent());
                   },
                 ),
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.red,
                   child: Text("Decrement counter"),
                   onPressed: () {
-                    bloc.add(MathEvent.subtract);
+                    // bloc.add(MathEvent.subtract);
 
                     // _counterBlocSink.add(DecreaseCounterEvent());
                   },
@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.black,
                   child: Text("Double counter"),
                   onPressed: () {
-                    bloc.add(MathEvent.by2);
+                    // bloc.add(MathEvent.by2);
 
                     // _counterBlocSink.add(DoubleCounterEvent());
                   },
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.green,
                   child: Text("Half counter"),
                   onPressed: () {
-                    bloc.add(MathEvent.half);
+                    // bloc.add(MathEvent.half);
 
                     // _counterBlocSink.add(SquareCounterEvent());
                   },
