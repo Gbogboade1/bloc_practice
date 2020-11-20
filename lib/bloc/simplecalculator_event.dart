@@ -35,11 +35,11 @@ abstract class SimplecalculatorEvent extends Equatable {
 class CalcOperation extends SimplecalculatorEvent {
   final CalculatorOperations op;
 
-  CalcOperation(this.op);
+  CalcOperation({this.op});
 }
 
 class CalcNumPad extends SimplecalculatorEvent {
   final CalculatorDigits digit;
 
-  CalcNumPad(this.digit);
+  CalcNumPad({this.digit});
 }

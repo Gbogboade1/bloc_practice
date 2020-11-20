@@ -1,4 +1,5 @@
 import 'package:e_report/bloc/simplecalculator_bloc.dart';
+import 'package:e_report/calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: MyHomePage(title: 'Flutter Demo Home Page')),
+          home: Calculator() //MyHomePage(title: 'Flutter Demo Home Page'),
+          ),
     );
   }
 }
