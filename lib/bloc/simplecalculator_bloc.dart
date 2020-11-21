@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:e_report/functions.dart';
+import 'package:e_report/result_processor.dart';
 import 'package:equatable/equatable.dart';
 
 part 'simplecalculator_event.dart';
@@ -15,15 +16,12 @@ class SimplecalculatorBloc
   Stream<SimplecalculatorState> mapEventToState(
       SimplecalculatorEvent event) async* {
     if (event is CalcOperation) {
-      // TODO: implement logic of operation pressed
-
       CurrentCalculatorState calc = state as CurrentCalculatorState;
       switch (event.op) {
         case CalculatorOperations.add:
           {
             yield CurrentCalculatorState(
               calculatorData: addOperator(calc.calculatorData.toList(), "+"),
-              result: "15",
             );
           }
           break;
@@ -31,7 +29,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: addOperator(calc.calculatorData.toList(), "-"),
-              result: "15",
             );
           }
           break;
@@ -39,7 +36,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: addOperator(calc.calculatorData.toList(), "*"),
-              result: "15",
             );
           }
           break;
@@ -47,7 +43,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: addOperator(calc.calculatorData.toList(), "/"),
-              result: "15",
             );
           }
           break;
@@ -55,36 +50,28 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: addOperator(calc.calculatorData.toList(), "^2"),
-              result: "15",
             );
           }
           break;
         case CalculatorOperations.clear:
           {
-            //delete last char
-            var l = calc.calculatorData.toList();
-            var nl = deleteLastChar(calc.calculatorData.toList());
+            var nl = deleteLastDigitLastChar(calc.calculatorData.toList());
             yield CurrentCalculatorState(
               calculatorData: nl,
-              result: "",
             );
           }
           break;
         case CalculatorOperations.clearAll:
           {
-            //delete all input
-
             yield CurrentCalculatorState(
               calculatorData: ["0"],
-              result: "",
             );
           }
           break;
         case CalculatorOperations.result:
           {
             yield CurrentCalculatorState(
-              calculatorData: calc.calculatorData,
-              result: "",
+              calculatorData: ["${calcResult(calc.calculatorData.toList())}"],
             );
           }
           break;
@@ -100,7 +87,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "1"),
-              result: "res",
             );
           }
 
@@ -109,7 +95,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "2"),
-              result: "res",
             );
           }
 
@@ -118,7 +103,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "3"),
-              result: "res",
             );
           }
 
@@ -127,7 +111,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "4"),
-              result: "res",
             );
           }
 
@@ -136,7 +119,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "5"),
-              result: "res",
             );
           }
 
@@ -145,7 +127,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "6"),
-              result: "res",
             );
           }
 
@@ -154,7 +135,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "7"),
-              result: "res",
             );
           }
 
@@ -163,7 +143,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "8"),
-              result: "res",
             );
           }
 
@@ -172,7 +151,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "7"),
-              result: "res",
             );
           }
 
@@ -181,7 +159,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "9"),
-              result: "res",
             );
           }
 
@@ -190,7 +167,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "."),
-              result: "res",
             );
           }
 
@@ -199,7 +175,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "0"),
-              result: "res",
             );
           }
 
@@ -208,7 +183,6 @@ class SimplecalculatorBloc
           {
             yield CurrentCalculatorState(
               calculatorData: updateLastDigit(r, "00"),
-              result: "res",
             );
           }
 

@@ -23,9 +23,11 @@ List<CalcItem> calcList = [
   CalcItem(boxValue: "7", event: CalcNumPad(digit: CalculatorDigits.vii)),
   CalcItem(boxValue: "8", event: CalcNumPad(digit: CalculatorDigits.viii)),
   CalcItem(boxValue: "9", event: CalcNumPad(digit: CalculatorDigits.ix)),
-  CalcItem(boxValue: "C", event: CalcOperation(op: CalculatorOperations.clear)),
   CalcItem(
-      boxValue: "CE", event: CalcOperation(op: CalculatorOperations.clearAll)),
+      boxValue: "del", event: CalcOperation(op: CalculatorOperations.clear)),
+  CalcItem(
+      boxValue: "Clear",
+      event: CalcOperation(op: CalculatorOperations.clearAll)),
 
   //ROW 2
   CalcItem(boxValue: "4", event: CalcNumPad(digit: CalculatorDigits.iv)),
@@ -49,7 +51,7 @@ List<CalcItem> calcList = [
   CalcItem(boxValue: "0", event: CalcNumPad(digit: CalculatorDigits.zero)),
   CalcItem(boxValue: "00", event: CalcNumPad(digit: CalculatorDigits.zero2)),
   CalcItem(
-      boxValue: "pow2", event: CalcOperation(op: CalculatorOperations.add)),
+      boxValue: "^2", event: CalcOperation(op: CalculatorOperations.square)),
   CalcItem(
       boxValue: "=", event: CalcOperation(op: CalculatorOperations.result)),
 ];
